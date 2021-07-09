@@ -20,7 +20,7 @@ import { createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-function Home(){
+function Detail(){
 
   const navigation = useNavigation();
   // const [name, setName] = useState('');
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
 },
   });
   
-  export default Home;
+  export default Detail;

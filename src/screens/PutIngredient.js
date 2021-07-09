@@ -44,9 +44,6 @@ function PutIngredient(){
 
   return(
     <View style={styles.sectionContainer}>
-      <Text>
-        Welcome to ...!
-      </Text>
       <TextInput
                 style={styles.input}
                 placeholder='Enter Ingredient'
@@ -54,7 +51,8 @@ function PutIngredient(){
                 onChangeText={(value)=>setInput(value)}
       />
       <Button
-        title="buttton"
+        title="Enter"
+        color="#FF8C10"
         onPress={()=>onPressHandle(input)}
       />
       <Text>
@@ -63,12 +61,12 @@ function PutIngredient(){
       <FlatList
         data={ingredients}
         renderItem={({item, index})=>(
-            <View>
+            <View style={styles.foodlist}>
                 <TouchableOpacity
                     onPress={()=>handleRemoveItem(item.name)}
                 >
-                    <Text>
-                        {item.name}
+                    <Text style={styles.foodlistText}>
+                        - {item.name}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -76,8 +74,9 @@ function PutIngredient(){
         keyExtractor={(item, index) => index.toString()}
       />
       <Button
-        style={styles.button}
         title='Search'
+        color="#FF8C10"
+        onPress={()=>{navigation.navigate('Menu',{ingredients})}}
       />
     </View>
   )
@@ -85,25 +84,11 @@ function PutIngredient(){
 
 const styles = StyleSheet.create({
   sectionContainer: {
+      padding: 10,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  text: {
-      // fontSize:40,
-      // fontFamily:'DancingScript-Regular'
+    backgroundColor: '#FFF3E6',
   },
   input: {
     width: 300,
@@ -116,17 +101,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  title: {
-    fontSize: 30,
+  foodlist: {
     margin: 10,
+    // padding: 10,
+    // backgroundColor: '#FF8C10',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  subtitle: {
-      fontSize: 20,
-     margin: 10,
-     color: '#999999',
-  },
-  button: {
-      margin: 10,
+  foodlistText: {
+    fontSize: 20,
+    color: 'black',
   }
   });
   

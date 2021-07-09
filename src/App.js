@@ -12,6 +12,7 @@ import {
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
 import Home from './screens/Home'
+import Menu from './screens/Menu'
 import PutIngredient from './screens/PutIngredient'
 // import Login from './screens/Login'
 
@@ -33,6 +34,10 @@ function App(){
         <Stack.Screen
           name="PutIngredient"
           component={PutIngredient}
+        />
+        <Stack.Screen
+          name="Menu"
+          component={Menu}
         />
         {/* <Stack.Screen
           name="Map"
