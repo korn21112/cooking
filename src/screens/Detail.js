@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import { NavigationContainer, useNavigation, useRoute } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import firestore from '@react-native-firebase/firestore';
 
 const Stack = createStackNavigator();
 
@@ -25,11 +26,28 @@ function Detail() {
     const navigation = useNavigation();
     const route = useRoute();
     const { item } = route.params;
+    const [foods, setFoods] = useState([]);
     // const [name, setName] = useState('');
     // const [age, setAge] = useState('')
 
-    useEffect(() => {
+    const getDetail = () => {
+        const subscriber =
+            firestore()
+                .collection("foods")
+                .where('name', '==', item.name)//.where('ingredients', '==', ['rice','egg','pork'])
+                .onSnapshot(doc => {
+                    let food = []
+                    doc.forEach(doc => {
+                        food.push(doc.data())
+                    })
+                    setFoods(food)
+                    console.log(food)
+                    console.log(foods)
+                })
+    }
 
+    useEffect(() => {
+        getDetail()
     }, []);
 
     return (
@@ -41,26 +59,54 @@ function Detail() {
             <View style={styles.pictureContent}>
                 <Image
                     style={styles.logo}
-                    source={require('../../assets/food.jpg')}
+                    // source={require('../../assets/food.jpg')}
+                    source={{
+                        uri:foods[0]?.pictureURL
+                    }}
                 />
             </View>
             <View style={styles.ingredientContent}>
                 <Text style={styles.textHeader}>
                     Ingredient
             </Text>
-                <Text>
-                    adfasdfasdfsdfaokdfkadofkadkflmdvpdokfsodfapodkf
-                    adfadsfassadfasdfasdfasdafs
-            </Text>
+                <FlatList
+                    data={foods[0]?.ingredients}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.foodlist}>
+                            <TouchableOpacity
+                            // onPress={()=>handleRemoveItem(item.name)}
+                            >
+                                <Text style={styles.textContent}>
+                                    - {item}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
+                    keyExtractor={(item, index) => index.toString()}
+                />
             </View>
             <View style={styles.methodContent}>
                 <Text style={styles.textHeader}>
                     Method
             </Text>
-                <Text>
-                    adfasdfasdfsdfaokdfkadofkadkflmdvpdokfsodfapodkf
-                    adfadsfassadfasdfasdfasdafs
-            </Text>
+            <FlatList
+                    data={foods[0]?.recipe}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.foodlist}>
+                            <TouchableOpacity
+                            // onPress={()=>handleRemoveItem(item.name)}
+                            >
+                                <Text style={styles.textContent}>
+                                    - {item}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+                {/* <Text style={styles.textContent}>
+                    {foods[0]?.recipe}
+            </Text> */}
             </View>
         </ScrollView>
         // </ScrollView>
@@ -79,6 +125,9 @@ const styles = StyleSheet.create({
         margin: 10,
         fontSize: 40,
         // fontFamily:'DancingScript-Regular'
+    },
+    textContent: {
+        margin: 10,
     },
     textStart: {
         fontSize: 20,
@@ -101,8 +150,8 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     pictureContent: {
-          justifyContent: 'center',
-          alignItems: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 

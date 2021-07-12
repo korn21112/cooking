@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { NavigationContainer, useNavigation, useRoute } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
+import firestore from '@react-native-firebase/firestore';
 
 const Stack = createStackNavigator();
 
@@ -25,57 +26,30 @@ function Menu(){
   const route = useRoute();
   const {ingredients} = route.params;
   const [choices, setChoices] = useState([]);
-  const [test,setTest] = useState('');
-  const foods = [
-    {
-        name:"omlets",
-        ingredients:[
-            {name:"egg"},
-            {name:"rice"}
-        ]
-    },
-    {
-        name:"friedrice",
-        ingredients:[
-            {name:"egg"},
-            {name:"rice"},
-            {name:"pork"}
-        ]
-    }
-    ]
 
     const findMenu = () => {
-        //check ingredient in foods that your ingredients have
-        //return to choice same as foods
-        for(var i=0;i<foods.length;i++){
-            // console.log(i)
-            // console.log(foods[i].name)
-            for(var j=0;j<foods[i].ingredients.length;j++){
-
-            }
-            // setChoices([...choices, {
-            //     name: foods[i].name,
-            //     // ingredients: foods[i].ingredients
-            // }])
-            // console.log(foods[i].name)
-        }
-        setTest('hello')
-        setChoices([...choices,
-          {name: foods[0].name},
-          // ingredients: foods[i].ingredients
-        ])
-
-      setChoices([...choices,
-        {name: foods[1].name},
-        // ingredients: foods[i].ingredients
-      ])
-        console.log(choices.length)
+      let temp = []
+      ingredients.forEach(item => {
+        temp.push(item.name)
+      })
+      const subscriber = 
+      firestore()
+      .collection("foods")
+      .where('ingredients', 'array-contains-any', temp)//.where('ingredients', '==', ['rice','egg','pork'])
+      .onSnapshot(doc =>{
+        let food = []
+        doc.forEach(doc => {
+          food.push(doc.data())
+        })
+        setChoices(food)
+        console.log(food)
+        console.log(choices)
+        console.log('hello')
+      })
     }
 
   useEffect(() => {
-    //get data of menu
-    // findMenu();
-    setChoices(foods)
+    findMenu()
   },[]);
 
   return(
