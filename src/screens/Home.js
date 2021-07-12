@@ -17,23 +17,30 @@ import {
 } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
+import firestore from '@react-native-firebase/firestore';
 
 const Stack = createStackNavigator();
 
 function Home(){
 
   const navigation = useNavigation();
-  // const [name, setName] = useState('');
+  const [name, setName] = useState('');
   // const [age, setAge] = useState('')
+  const getUser = async () => {
+    const userDocument = await firestore().collection("users").
+    doc('2TPLmvIzSFk6eaPuv6PJ').get()
+    console.log(userDocument);
+    setName(userDocument.data().name)
+  }
 
   useEffect(() => {
-
+    getUser();
   },[]);
 
   return(
     <View style={styles.sectionContainer}>
       <Text style={styles.textHeader}>
-        Welcome to ...!
+        Welcome {name} to ...!
       </Text>  
         <Image
             style={styles.logo}

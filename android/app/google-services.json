@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "644946014844",
+    "project_id": "test-be13b",
+    "storage_bucket": "test-be13b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644946014844:android:61b24ae034a1d3b1a48ff9",
+        "android_client_info": {
+          "package_name": "com.cooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644946014844-ik151nt83fkpi8nqbbv71nihg046iaf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjklM8pnE7BHIQJ5eMYAnF7WUW6M9Tfeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644946014844-ik151nt83fkpi8nqbbv71nihg046iaf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644946014844:android:ec9491eec8857887a48ff9",
+        "android_client_info": {
+          "package_name": "com.testproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644946014844-ik151nt83fkpi8nqbbv71nihg046iaf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjklM8pnE7BHIQJ5eMYAnF7WUW6M9Tfeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644946014844-ik151nt83fkpi8nqbbv71nihg046iaf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
