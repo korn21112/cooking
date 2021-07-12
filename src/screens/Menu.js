@@ -87,7 +87,7 @@ function Menu(){
               style={styles.foodlist}
             >
                 <TouchableOpacity
-                    // onPress={()=>handleRemoveItem()}
+                    onPress={()=>{navigation.navigate('Detail',{item})}}
                 >
                     <Text style={styles.foodlistText}>
                         {item.name}

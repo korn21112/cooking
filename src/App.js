@@ -13,6 +13,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
 import Home from './screens/Home'
 import Menu from './screens/Menu'
+import Detail from './screens/Detail'
 import PutIngredient from './screens/PutIngredient'
 // import Login from './screens/Login'
 
@@ -38,6 +39,10 @@ function App(){
         <Stack.Screen
           name="Menu"
           component={Menu}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={Detail}
         />
         {/* <Stack.Screen
           name="Map"
