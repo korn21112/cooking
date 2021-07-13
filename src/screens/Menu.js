@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
   foodlistText: {
     fontSize: 30,
     color: 'white',
+    fontFamily: 'Yomogi-Regular',
   }
   });
   

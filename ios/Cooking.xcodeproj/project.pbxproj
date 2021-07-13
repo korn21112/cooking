@@ -20,6 +20,13 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B08BE5CD8B81246D0F69D94D /* libPods-Cooking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C9943976BF060031631800 /* libPods-Cooking.a */; };
 		BFDB26174043BD1E2C0450C7 /* libPods-Cooking-CookingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F09F4FC6E39BCD54F6A232F /* libPods-Cooking-CookingTests.a */; };
+		BDC7435EC2DE4EE5BD6DBAEF /* DancingScript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD7081A1E1CC40A3A9A1B173 /* DancingScript-Bold.ttf */; };
+		17ACE83EAD3A467A9C6738AD /* DancingScript-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91436A6D30454AD89F30296A /* DancingScript-Medium.ttf */; };
+		9B552A1444CA415B9E70DFFF /* DancingScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13CA39C0727E47288017910D /* DancingScript-Regular.ttf */; };
+		7DD3A05B9DE649EF94A31F08 /* DancingScript-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B7B2C314CFB421BB22578C8 /* DancingScript-SemiBold.ttf */; };
+		287E9671F84A47F4B7400747 /* IndieFlower-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A4067F7FE7646E1BA040EC0 /* IndieFlower-Regular.ttf */; };
+		A5EB438882CC4BC396EDF30A /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 774BECD766074417980B9542 /* PoiretOne-Regular.ttf */; };
+		5629B7D4D9AE4608B014AF97 /* Yomogi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07AEFEBC09BC4EBA85F89F0E /* Yomogi-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +74,13 @@
 		B6C991D321A17AD7CDABEBF6 /* Pods-Cooking-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cooking-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Cooking-tvOS/Pods-Cooking-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		BD7081A1E1CC40A3A9A1B173 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; name = "DancingScript-Bold.ttf"; path = "../assets/fonts/DancingScript-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		91436A6D30454AD89F30296A /* DancingScript-Medium.ttf */ = {isa = PBXFileReference; name = "DancingScript-Medium.ttf"; path = "../assets/fonts/DancingScript-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		13CA39C0727E47288017910D /* DancingScript-Regular.ttf */ = {isa = PBXFileReference; name = "DancingScript-Regular.ttf"; path = "../assets/fonts/DancingScript-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5B7B2C314CFB421BB22578C8 /* DancingScript-SemiBold.ttf */ = {isa = PBXFileReference; name = "DancingScript-SemiBold.ttf"; path = "../assets/fonts/DancingScript-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3A4067F7FE7646E1BA040EC0 /* IndieFlower-Regular.ttf */ = {isa = PBXFileReference; name = "IndieFlower-Regular.ttf"; path = "../assets/fonts/IndieFlower-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		774BECD766074417980B9542 /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; name = "PoiretOne-Regular.ttf"; path = "../assets/fonts/PoiretOne-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		07AEFEBC09BC4EBA85F89F0E /* Yomogi-Regular.ttf */ = {isa = PBXFileReference; name = "Yomogi-Regular.ttf"; path = "../assets/fonts/Yomogi-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +179,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				A0D9CD4D2889C3C0CFC5A330 /* Pods */,
+				A68E978E8D534664846D1A68 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -197,6 +212,21 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		A68E978E8D534664846D1A68 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				BD7081A1E1CC40A3A9A1B173 /* DancingScript-Bold.ttf */,
+				91436A6D30454AD89F30296A /* DancingScript-Medium.ttf */,
+				13CA39C0727E47288017910D /* DancingScript-Regular.ttf */,
+				5B7B2C314CFB421BB22578C8 /* DancingScript-SemiBold.ttf */,
+				3A4067F7FE7646E1BA040EC0 /* IndieFlower-Regular.ttf */,
+				774BECD766074417980B9542 /* PoiretOne-Regular.ttf */,
+				07AEFEBC09BC4EBA85F89F0E /* Yomogi-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -344,6 +374,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				BDC7435EC2DE4EE5BD6DBAEF /* DancingScript-Bold.ttf in Resources */,
+				17ACE83EAD3A467A9C6738AD /* DancingScript-Medium.ttf in Resources */,
+				9B552A1444CA415B9E70DFFF /* DancingScript-Regular.ttf in Resources */,
+				7DD3A05B9DE649EF94A31F08 /* DancingScript-SemiBold.ttf in Resources */,
+				287E9671F84A47F4B7400747 /* IndieFlower-Regular.ttf in Resources */,
+				A5EB438882CC4BC396EDF30A /* PoiretOne-Regular.ttf in Resources */,
+				5629B7D4D9AE4608B014AF97 /* Yomogi-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

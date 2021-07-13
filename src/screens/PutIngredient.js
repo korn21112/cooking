@@ -61,11 +61,11 @@ function PutIngredient(){
       <FlatList
         data={ingredients}
         renderItem={({item, index})=>(
-            <View style={styles.foodlist}>
+            <View style={styles.ingredientList}>
                 <TouchableOpacity
                     onPress={()=>handleRemoveItem(item.name)}
                 >
-                    <Text style={styles.foodlistText}>
+                    <Text style={styles.ingredientListText}>
                         - {item.name}
                     </Text>
                 </TouchableOpacity>
@@ -101,16 +101,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  foodlist: {
+  ingredientList: {
     margin: 10,
     // padding: 10,
     // backgroundColor: '#FF8C10',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  foodlistText: {
-    fontSize: 20,
+  ingredientListText: {
+    fontSize: 30,
     color: 'black',
+    fontFamily: 'DancingScript-Regular',
   }
   });
   

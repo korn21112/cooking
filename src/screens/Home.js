@@ -41,13 +41,14 @@ function Home(){
     <View style={styles.sectionContainer}>
       <Text style={styles.textHeader}>
         Welcome {name} to ...!
-      </Text>  
-        <Image
-            style={styles.logo}
-            source={require('../../assets/cooking.png')}
-        />
+      </Text>      
+      <Image
+        style={styles.logo}
+        source={require('../../assets/cooking.png')}
+      />
       <TouchableOpacity
-        onPress={()=>{navigation.navigate('PutIngredient')}}
+        onPress={()=>{navigation.navigate('BottomTabNavigator')}}
+        // onPress={()=>{navigation.navigate('PutIngredient')}}
       >
           <Text style={styles.textStart}>Press to Start</Text>
       </TouchableOpacity>
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
     textHeader: {
         margin: 10,
         fontSize: 40,
-        // fontFamily:'DancingScript-Regular'
+        textAlign: 'center',
+        fontFamily:'DancingScript-Regular'
     },
     textStart: {
         fontSize: 20,

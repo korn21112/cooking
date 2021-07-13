@@ -53,7 +53,7 @@ function Detail() {
     return (
         // <ScrollView>
         <ScrollView style={styles.sectionContainer}>
-            <Text style={styles.textHeader}>
+            <Text style={styles.textTopHeader}>
                 {item.name}
             </Text>
             <View style={styles.pictureContent}>
@@ -124,10 +124,18 @@ const styles = StyleSheet.create({
     textHeader: {
         margin: 10,
         fontSize: 40,
-        // fontFamily:'DancingScript-Regular'
+        fontFamily: 'DancingScript-Regular'
+    },
+    textTopHeader: {
+        margin: 10,
+        fontSize: 45,
+        fontFamily: 'DancingScript-Regular',
+        textAlign: 'center',
     },
     textContent: {
         margin: 10,
+        fontSize: 15,
+        fontFamily: 'Yomogi-Regular',
     },
     textStart: {
         fontSize: 20,
