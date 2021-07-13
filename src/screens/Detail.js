@@ -27,6 +27,7 @@ function Detail() {
     const route = useRoute();
     const { item } = route.params;
     const [foods, setFoods] = useState([]);
+    const [doc, setDoc] = useState('');
     // const [name, setName] = useState('');
     // const [age, setAge] = useState('')
 
@@ -39,9 +40,23 @@ function Detail() {
                     let food = []
                     doc.forEach(doc => {
                         food.push(doc.data())
+                        setDoc(doc.ref._documentPath._parts[1])
+                        console.log(doc.ref._documentPath._parts[1])
                     })
+                    
                     setFoods(food)
                 })
+    }
+
+    const onPressRemoveHandle = () => {
+        firestore()
+            .collection('foods')
+            .doc(doc)
+            .delete()
+            .then(() => {
+                console.log('food deleted!');
+            });
+        navigation.goBack();
     }
 
     useEffect(() => {
@@ -106,6 +121,11 @@ function Detail() {
                     {foods[0]?.recipe}
             </Text> */}
             </View>
+            <Button
+                title="remove"
+                color="red"
+                onPress={()=>onPressRemoveHandle()}
+            />
         </ScrollView>
         // </ScrollView>
 
@@ -118,6 +138,9 @@ const styles = StyleSheet.create({
         //   justifyContent: 'center',
         //   alignItems: 'center',
         backgroundColor: '#FFF3E6',
+    },
+    methodContent:{
+        marginBottom: 10,
     },
     textHeader: {
         margin: 10,
