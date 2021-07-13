@@ -42,9 +42,6 @@ function Menu(){
           food.push(doc.data())
         })
         setChoices(food)
-        console.log(food)
-        console.log(choices)
-        console.log('hello')
       })
     }
 

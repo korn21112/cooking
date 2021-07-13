@@ -41,8 +41,6 @@ function Detail() {
                         food.push(doc.data())
                     })
                     setFoods(food)
-                    console.log(food)
-                    console.log(foods)
                 })
     }
 

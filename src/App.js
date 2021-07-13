@@ -15,6 +15,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './screens/Home'
 import Menu from './screens/Menu'
 import AllMenu from './screens/AllMenu'
+import AddMenu from './screens/AddMenu'
 import Detail from './screens/Detail'
 import PutIngredient from './screens/PutIngredient'
 // import Login from './screens/Login'
@@ -99,6 +100,16 @@ function BottomTabNavigator() {
         component={AllMenu}
         options={{
           title: 'AllMenu',
+          // tabBarIcon: ({color}) => {
+          //   return <Icon color={color} name="receipt" size={20} solid />;
+          // },
+        }}
+      />
+      <BottomTab.Screen
+        name="AddMenu"
+        component={AddMenu}
+        options={{
+          title: 'AddMenu',
           // tabBarIcon: ({color}) => {
           //   return <Icon color={color} name="receipt" size={20} solid />;
           // },
