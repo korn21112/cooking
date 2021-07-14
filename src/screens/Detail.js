@@ -43,7 +43,7 @@ function Detail() {
                         setDoc(doc.ref._documentPath._parts[1])
                         console.log(doc.ref._documentPath._parts[1])
                     })
-                    
+
                     setFoods(food)
                 })
     }
@@ -57,6 +57,10 @@ function Detail() {
                 console.log('food deleted!');
             });
         navigation.goBack();
+    }
+
+    const onPressUpdateHandle = () => {
+        navigation.navigate('UpdateDetail',{ item })
     }
 
     useEffect(() => {
@@ -74,7 +78,7 @@ function Detail() {
                     style={styles.logo}
                     // source={require('../../assets/food.jpg')}
                     source={{
-                        uri:foods[0]?.pictureURL
+                        uri: foods[0]?.pictureURL
                     }}
                 />
             </View>
@@ -101,8 +105,8 @@ function Detail() {
             <View style={styles.methodContent}>
                 <Text style={styles.textHeader}>
                     Method
-            </Text>
-            <FlatList
+                </Text>
+                <FlatList
                     data={foods[0]?.recipe}
                     renderItem={({ item, index }) => (
                         <View style={styles.foodlist}>
@@ -117,14 +121,16 @@ function Detail() {
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                {/* <Text style={styles.textContent}>
-                    {foods[0]?.recipe}
-            </Text> */}
             </View>
+            <Button
+                title="update"
+                color="#FF8C10"
+                onPress={() => onPressUpdateHandle()}
+            />
             <Button
                 title="remove"
                 color="red"
-                onPress={()=>onPressRemoveHandle()}
+                onPress={() => onPressRemoveHandle()}
             />
         </ScrollView>
         // </ScrollView>
@@ -139,7 +145,7 @@ const styles = StyleSheet.create({
         //   alignItems: 'center',
         backgroundColor: '#FFF3E6',
     },
-    methodContent:{
+    methodContent: {
         marginBottom: 10,
     },
     textHeader: {
@@ -149,7 +155,7 @@ const styles = StyleSheet.create({
     },
     textTopHeader: {
         margin: 10,
-        fontSize: 45,
+        fontSize: 50,
         fontFamily: 'DancingScript-Regular',
         textAlign: 'center',
     },

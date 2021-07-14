@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
+import auth from '@react-native-firebase/auth';
 
 const Stack = createStackNavigator();
 
@@ -39,7 +40,8 @@ function PutIngredient(){
    };
 
   useEffect(() => {
-
+    // const user = auth().currentUser;
+    // console.log(user);
   },[]);
 
   return(
@@ -55,9 +57,9 @@ function PutIngredient(){
         color="#FF8C10"
         onPress={()=>onPressHandle(input)}
       />
-      <Text>
-          {input}
-      </Text>
+      {/* <Text>
+          {auth().currentUser.email}
+      </Text> */}
       <FlatList
         data={ingredients}
         renderItem={({item, index})=>(

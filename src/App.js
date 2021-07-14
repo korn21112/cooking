@@ -17,6 +17,7 @@ import Menu from './screens/Menu'
 import AllMenu from './screens/AllMenu'
 import AddMenu from './screens/AddMenu'
 import Detail from './screens/Detail'
+import UpdateDetail from './screens/UpdateDetail'
 import PutIngredient from './screens/PutIngredient'
 // import Login from './screens/Login'
 
@@ -47,6 +48,10 @@ function App(){
         <Stack.Screen
           name="Detail"
           component={Detail}
+        />
+        <Stack.Screen
+          name="UpdateDetail"
+          component={UpdateDetail}
         />
       </Stack.Navigator>
     </NavigationContainer>

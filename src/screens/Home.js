@@ -18,10 +18,130 @@ import {
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 const Stack = createStackNavigator();
 
 function Home(){
+  // // Set an initializing state whilst Firebase connects
+  // const [initializing, setInitializing] = useState(true);
+  // const [user, setUser] = useState();
+  // const navigation = useNavigation();
+
+  // // Handle user state changes
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   if (initializing) setInitializing(false);
+  // }
+
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
+
+  // const signInAnonymously = () => {
+  //   console.log('signin ing')
+  //   auth()
+  // .signInAnonymously()
+  // .then(() => {
+  //   console.log('User signed in anonymously');
+  // })
+  // .catch(error => {
+  //   if (error.code === 'auth/operation-not-allowed') {
+  //     console.log('Enable anonymous in your firebase console.');
+  //   }
+
+  //   console.error(error);
+  // });
+  // }
+
+  // const signOut = () => {
+  //   auth()
+  // .signOut()
+  // .then(() => console.log('User signed out!'));
+  // }
+
+  // const createUser = () => {
+  //   auth()
+  // .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+  // .then(() => {
+  //   console.log('User account created & signed in!');
+  // })
+  // .catch(error => {
+  //   if (error.code === 'auth/email-already-in-use') {
+  //     console.log('That email address is already in use!');
+  //   }
+
+  //   if (error.code === 'auth/invalid-email') {
+  //     console.log('That email address is invalid!');
+  //   }
+
+  //   console.error(error);
+  // });
+  // }
+
+  // const signInByJane = () => {
+  //   auth()
+  // .signInWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+  // .then(() => {
+  //   console.log('User account created & signed in!');
+  //   navigation.navigate('BottomTabNavigator');
+  // })
+  // .catch(error => {
+  //   if (error.code === 'auth/email-already-in-use') {
+  //     console.log('That email address is already in use!');
+  //   }
+
+  //   if (error.code === 'auth/invalid-email') {
+  //     console.log('That email address is invalid!');
+  //   }
+
+  //   console.error(error);
+  // });
+  // }
+
+  // const getCurrentUser = () => {
+  //   const user = auth().currentUser;
+  //   console.log(user);
+  // }
+
+  // if (initializing) return null;
+
+  // if (!user) {
+  //   return (
+  //     <View>
+  //       <Text>Login</Text>
+  //       <Button
+  //         title='sign in anonymous'
+  //         onPress={()=>{signInAnonymously()}}
+  //       />
+  //       <Button
+  //         title='create user jane.doe'
+  //         onPress={()=>{createUser()}}
+  //       />
+  //       <Button
+  //         title='sign in by joe'
+  //         onPress={()=>{signInByJane()}}
+  //       />
+  //     </View>
+  //   );
+  // }
+
+  // return (
+  //   <View>
+  //     <Text>Welcome {user.email}</Text>
+  //     <Button
+  //         title='current user'
+  //         onPress={()=>{getCurrentUser()}}
+  //     />
+  //     <Button
+  //         title='sign out'
+  //         onPress={()=>{signOut()}}
+  //     />
+  //   </View>
+  // );
+///^^^^^ test authen
+
 
   const navigation = useNavigation();
   const [name, setName] = useState('');
