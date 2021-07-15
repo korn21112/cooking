@@ -139,16 +139,6 @@ function UpdateDetail() {
                     onChangeText={(value) => setPictureInput(value)}
                 />
             </View>
-
-            {/* <View style={styles.pictureContent}>
-                <Image
-                    style={styles.logo}
-                    // source={require('../../assets/food.jpg')}
-                    source={{
-                        uri:foods[0]?.pictureURL
-                    }}
-                />
-            </View> */}
             <View style={styles.ingredientContent}>
                 <Text style={styles.textHeader}>
                     Ingredient

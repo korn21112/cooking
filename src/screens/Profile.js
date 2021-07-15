@@ -22,7 +22,7 @@ import auth from '@react-native-firebase/auth';
 
 const Stack = createStackNavigator();
 
-function Home(){
+function Profile(){
   
   const getCurrentUser = () => {
     const user = auth().currentUser;
@@ -39,6 +39,17 @@ function Home(){
     setName(userDocument.data().name)
   }
 
+  const signOut = () => {
+    auth()
+  .signOut()
+  .then(() => console.log('User signed out!'));
+  }
+
+  const onPressLogOutHandle = () => {
+    signOut();
+    navigation.replace('Login');
+  }
+
   useEffect(() => {
     getUser();
     getCurrentUser();
@@ -46,18 +57,18 @@ function Home(){
 
   return(
     <View style={styles.sectionContainer}>
-      <Text style={styles.textHeader}>
+      {/* <Text style={styles.textHeader}>
         Welcome {name} {auth()?.currentUser.email} to ...!
       </Text>      
       <Image
         style={styles.logo}
         source={require('../../assets/cooking.png')}
-      />
+      /> */}
       <TouchableOpacity
-        onPress={()=>{navigation.replace('BottomTabNavigator')}}
+        onPress={()=>{onPressLogOutHandle()}}
         // onPress={()=>{navigation.navigate('PutIngredient')}}
       >
-          <Text style={styles.textStart}>Press to Start</Text>
+          <Text style={styles.textStart}>log out</Text>
       </TouchableOpacity>
 
     </View>
@@ -99,4 +110,4 @@ const styles = StyleSheet.create({
 },
   });
   
-  export default Home;
+  export default Profile;

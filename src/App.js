@@ -12,6 +12,8 @@ import {
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Login from './screens/Login'
+import SignUp from './screens/SignUp'
 import Home from './screens/Home'
 import Menu from './screens/Menu'
 import AllMenu from './screens/AllMenu'
@@ -19,6 +21,7 @@ import AddMenu from './screens/AddMenu'
 import Detail from './screens/Detail'
 import UpdateDetail from './screens/UpdateDetail'
 import PutIngredient from './screens/PutIngredient'
+import Profile from './screens/Profile'
 // import Login from './screens/Login'
 
 const Stack = createStackNavigator();
@@ -29,6 +32,14 @@ function App(){
     // <Provider store={Store}>
       <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+        />
         <Stack.Screen
           name="Home"
           component={Home}
@@ -115,6 +126,16 @@ function BottomTabNavigator() {
         component={AddMenu}
         options={{
           title: 'AddMenu',
+          // tabBarIcon: ({color}) => {
+          //   return <Icon color={color} name="receipt" size={20} solid />;
+          // },
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          title: 'Profile',
           // tabBarIcon: ({color}) => {
           //   return <Icon color={color} name="receipt" size={20} solid />;
           // },
