@@ -39,6 +39,12 @@ function PutIngredient(){
      setIngredients(ingredients.filter(item => item.name !== name));
    };
 
+  const searchHandle = () => {
+    if(ingredients.length != 0){
+      navigation.navigate('Menu',{ingredients})
+    }
+  }
+
   useEffect(() => {
     // const user = auth().currentUser;
     // console.log(user);
@@ -78,7 +84,7 @@ function PutIngredient(){
       <Button
         title='Search'
         color="#FF8C10"
-        onPress={()=>{navigation.navigate('Menu',{ingredients})}}
+        onPress={()=>searchHandle()}
       />
     </View>
   )
