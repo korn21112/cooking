@@ -57,16 +57,11 @@ function Profile(){
 
   return(
     <View style={styles.sectionContainer}>
-      {/* <Text style={styles.textHeader}>
-        Welcome {name} {auth()?.currentUser.email} to ...!
-      </Text>      
-      <Image
-        style={styles.logo}
-        source={require('../../assets/cooking.png')}
-      /> */}
+      <Text style={styles.textHeader}>
+        {auth()?.currentUser.email}
+      </Text>
       <TouchableOpacity
         onPress={()=>{onPressLogOutHandle()}}
-        // onPress={()=>{navigation.navigate('PutIngredient')}}
       >
           <Text style={styles.textStart}>log out</Text>
       </TouchableOpacity>
