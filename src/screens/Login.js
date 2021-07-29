@@ -24,92 +24,16 @@ const Stack = createStackNavigator();
 
 function Login() {
     // // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
     const navigation = useNavigation();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-
-    // Handle user state changes
-    function onAuthStateChanged(user) {
-        setUser(user);
-        if (initializing) setInitializing(false);
-    }
-
-    useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber; // unsubscribe on unmount
-    }, []);
-
-    const signInAnonymously = () => {
-        console.log('signin ing')
-        auth()
-            .signInAnonymously()
-            .then(() => {
-                console.log('User signed in anonymously');
-            })
-            .catch(error => {
-                if (error.code === 'auth/operation-not-allowed') {
-                    console.log('Enable anonymous in your firebase console.');
-                }
-
-                console.error(error);
-            });
-    }
-
-    const signOut = () => {
-        auth()
-            .signOut()
-            .then(() => console.log('User signed out!'));
-    }
-
-    const createUser = () => {
-        auth()
-            .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
-            .then(() => {
-                console.log('User account created & signed in!');
-            })
-            .catch(error => {
-                if (error.code === 'auth/email-already-in-use') {
-                    console.log('That email address is already in use!');
-                }
-
-                if (error.code === 'auth/invalid-email') {
-                    console.log('That email address is invalid!');
-                }
-
-                console.error(error);
-            });
-    }
-
-    const signInByJane = () => {
-        auth()
-            .signInWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
-            .then(() => {
-                console.log('User account created & signed in!');
-                // navigation.navigate('BottomTabNavigator');
-                navigation.replace('Home');
-            })
-            .catch(error => {
-                if (error.code === 'auth/email-already-in-use') {
-                    console.log('That email address is already in use!');
-                }
-
-                if (error.code === 'auth/invalid-email') {
-                    console.log('That email address is invalid!');
-                }
-
-                console.error(error);
-            });
-    }
 
     const signInByEmail = () => {
         auth()
             .signInWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('User account created & signed in!');
-                // navigation.navigate('BottomTabNavigator');
-                navigation.replace('Home');
+                navigation.replace('BottomTabNavigator');
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
@@ -123,66 +47,29 @@ function Login() {
                 console.error(error);
             });
     }
-
-    const getCurrentUser = () => {
-        const user = auth().currentUser;
-        console.log(user);
-    }
-
-    if (initializing) return null;
-
-    if (!user) {
-        return (
-            <View style={styles.sectionContainer}>
-                {/* <Text>Login</Text>
-                <Button
-                    title='sign in anonymous'
-                    onPress={() => { signInAnonymously() }}
-                />
-                <Button
-                    title='create user jane.doe'
-                    onPress={() => { createUser() }}
-                />
-                <Button
-                    title='sign in by jane'
-                    onPress={() => { signInByJane() }}
-                /> */}
-                <TextInput
-                    style={styles.input}
-                    placeholder='Enter Email'
-                    onChangeText={(value) => setEmail(value)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Enter Password'
-                    secureTextEntry={true}
-                    onChangeText={(value) => setPassword(value)}
-                />
-                <Button
-                    title='login'
-                    color="#FF8C10"
-                    onPress={() => { signInByEmail() }}
-                />
-                <TouchableOpacity
-                    onPress={() => { navigation.navigate('SignUp') }}
-                >
-                    <Text style={styles.textSignUp}>Sign Up</Text>
-                </TouchableOpacity>
-            </View>
-        );
-    }
-
     return (
-        <View>
-            <Text>Welcome {user.email}</Text>
-            <Button
-                title='current user'
-                onPress={() => { getCurrentUser() }}
+        <View style={styles.sectionContainer}>
+            <TextInput
+                style={styles.input}
+                placeholder='Enter Email'
+                onChangeText={(value) => setEmail(value)}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder='Enter Password'
+                secureTextEntry={true}
+                onChangeText={(value) => setPassword(value)}
             />
             <Button
-                title='sign out'
-                onPress={() => { signOut() }}
+                title='login'
+                color="#FF8C10"
+                onPress={() => { signInByEmail() }}
             />
+            <TouchableOpacity
+                onPress={() => { navigation.navigate('SignUp') }}
+            >
+                <Text style={styles.textSignUp}>Sign Up</Text>
+            </TouchableOpacity>
         </View>
     );
 }
