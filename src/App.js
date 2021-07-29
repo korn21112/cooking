@@ -31,7 +31,9 @@ function App(){
   return(
     // <Provider store={Store}>
       <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName='Home'
+      >
         <Stack.Screen
           name="Login"
           component={Login}
@@ -43,6 +45,9 @@ function App(){
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="BottomTabNavigator"
