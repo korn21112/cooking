@@ -1,4 +1,4 @@
-import React , {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert,
   Pressable,
@@ -15,84 +15,118 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import auth from '@react-native-firebase/auth';
 
 const Stack = createStackNavigator();
 
-function PutIngredient(){
+function PutIngredient() {
 
   const navigation = useNavigation();
+  const inputRef = useRef(null);
   // const [name, setName] = useState('');
   // const [age, setAge] = useState('')
-  const [input,setInput] = useState('')
+  const [input, setInput] = useState('')
   const [ingredients, setIngredients] = useState([
-      {name: "egg"},
-      {name: "rice"}
+    { name: "egg" },
+    { name: "rice" }
   ])
 
-  const onPressHandle = (ingredient)=> {
-      setIngredients([...ingredients, {name: ingredient}])
+  const onPressHandle = (ingredient) => {
+    if (input != '') {
+      setIngredients([...ingredients, { name: ingredient }])
+      inputRef.current.clear()
+    }
+
   }
 
   const handleRemoveItem = (name) => {
-     setIngredients(ingredients.filter(item => item.name !== name));
-   };
+    setIngredients(ingredients.filter(item => item.name !== name));
+  };
 
   const searchHandle = () => {
-    if(ingredients.length != 0){
-      navigation.navigate('Menu',{ingredients})
+    if (ingredients.length != 0) {
+      navigation.navigate('Menu', { ingredients })
     }
   }
 
-  useEffect(() => {
-    // const user = auth().currentUser;
-    // console.log(user);
-  },[]);
+  const AddButton = () => {
+    return (
+      <TouchableOpacity
+        onPress={() => onPressHandle(input)}
+      >
+        <View style={styles.addButton}>
+          <Text style={styles.textAddButton}>
+            ADD
+        </Text>
+        </View>
+      </TouchableOpacity>
 
-  return(
+    )
+  }
+
+  return (
     <View style={styles.sectionContainer}>
-      <TextInput
-                style={styles.input}
-                placeholder='Enter Ingredient'
-                // value={name}
-                onChangeText={(value)=>setInput(value)}
-      />
-      <Button
-        title="Enter"
+      <View style={styles.inputSection}>
+        <TextInput
+          style={styles.input}
+          placeholder='Enter Ingredient'
+          // value={name}
+          textAlign='left'
+          onChangeText={(value) => setInput(value)}
+          ref={inputRef}
+        />
+        <AddButton />
+        {/* <Button
+        title="Add"
         color="#FF8C10"
         onPress={()=>onPressHandle(input)}
-      />
+      /> */}
+      </View>
+
       {/* <Text>
           {auth().currentUser.email}
       </Text> */}
       <FlatList
         data={ingredients}
-        renderItem={({item, index})=>(
-            <View style={styles.ingredientList}>
-                <TouchableOpacity
-                    onPress={()=>handleRemoveItem(item.name)}
-                >
-                    <Text style={styles.ingredientListText}>
-                        - {item.name}
-                    </Text>
-                </TouchableOpacity>
-            </View>
+        renderItem={({ item, index }) => (
+          <View style={styles.ingredientList}>
+            <TouchableOpacity
+              onPress={() => handleRemoveItem(item.name)}
+            >
+              <Text style={styles.ingredientListText}>
+                - {item.name}
+              </Text>
+            </TouchableOpacity>
+          </View>
         )}
         keyExtractor={(item, index) => index.toString()}
       />
-      <Button
+      {/* <Button
         title='Search'
         color="#FF8C10"
         onPress={()=>searchHandle()}
-      />
+      /> */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          dispatch(setTaskID(tasks.length + 1))
+          navigation.navigate('Task');
+        }}
+      >
+        {/* <FontAwesome5
+          name={'plus'}
+          size={20}
+          color={'#ffffff'}
+        /> */}
+      </TouchableOpacity>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   sectionContainer: {
-      padding: 10,
+    padding: 10,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -100,13 +134,16 @@ const styles = StyleSheet.create({
   },
   input: {
     width: 300,
-    borderWidth: 1,
-    borderColor: '#555',
-    borderRadius: 10,
+    height: 50,
+    // borderWidth: 1,
+    // borderColor: '#555',
+    borderTopLeftRadius: 30,
+    borderBottomLeftRadius: 30,
     backgroundColor: '#ffffff',
     textAlign: 'center',
     fontSize: 20,
     marginTop: 10,
+    paddingLeft: 20,
     marginBottom: 10,
   },
   ingredientList: {
@@ -120,7 +157,36 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'black',
     fontFamily: 'DancingScript-Regular',
-  }
-  });
-  
-  export default PutIngredient;
+  },
+  inputSection: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addButton: {
+    backgroundColor: '#FF8C10',
+    height: 50,
+    width: 70,
+    borderTopRightRadius: 30,
+    borderBottomRightRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textAddButton: {
+    color: '#ffffff'
+  },
+  button: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#FF8C10',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    elevation: 5,
+},
+});
+
+export default PutIngredient;
