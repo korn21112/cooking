@@ -76,17 +76,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#FF8C10',
   },
-  input: {
-    width: 300,
-    borderWidth: 1,
-    borderColor: '#555',
-    borderRadius: 10,
-    backgroundColor: '#ffffff',
-    textAlign: 'center',
-    fontSize: 20,
-    marginTop: 130,
-    marginBottom: 10,
-  },
   logo: {
     width: 200,
     height: 200,
