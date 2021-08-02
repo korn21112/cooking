@@ -65,8 +65,28 @@ function PutIngredient() {
     )
   }
 
-  return (
-    <View style={styles.sectionContainer}>
+  const SearchButton = () => {
+    return (
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          searchHandle()
+        }}
+      >
+        <Text>
+          Search
+        </Text>
+        {/* <FontAwesome5
+          name={'plus'}
+          size={20}
+          color={'#ffffff'}
+        /> */}
+      </TouchableOpacity>
+    )
+  }
+
+  const InputSection = () => {
+    return (
       <View style={styles.inputSection}>
         <TextInput
           style={styles.input}
@@ -77,49 +97,49 @@ function PutIngredient() {
           ref={inputRef}
         />
         <AddButton />
-        {/* <Button
-        title="Add"
-        color="#FF8C10"
-        onPress={()=>onPressHandle(input)}
-      /> */}
       </View>
+    )
+  }
 
-      {/* <Text>
-          {auth().currentUser.email}
-      </Text> */}
-      <FlatList
-        data={ingredients}
-        renderItem={({ item, index }) => (
-          <View style={styles.ingredientList}>
-            <TouchableOpacity
-              onPress={() => handleRemoveItem(item.name)}
-            >
-              <Text style={styles.ingredientListText}>
-                - {item.name}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-      {/* <Button
-        title='Search'
-        color="#FF8C10"
-        onPress={()=>searchHandle()}
-      /> */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          dispatch(setTaskID(tasks.length + 1))
-          navigation.navigate('Task');
-        }}
-      >
-        {/* <FontAwesome5
-          name={'plus'}
-          size={20}
-          color={'#ffffff'}
-        /> */}
-      </TouchableOpacity>
+  const IngredientListSection = () => {
+    return (
+      <View>
+        <FlatList
+          data={ingredients}
+          renderItem={({ item, index }) => (
+            <View style={styles.ingredientList}>
+              <View style={styles.ingredientListLeftSide}>
+                <View style={styles.icon}>
+                  <Text>
+                    I
+                  </Text>
+                </View>
+                <Text>
+                  {item.name}
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={styles.deleteButton}
+                onPress={() => handleRemoveItem(item.name)}
+              >
+                <Text>-</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    )
+  }
+
+  return (
+    <View style={styles.sectionContainer}>
+      <Text style={styles.textHeader}>
+        What ingredient do you have ????
+      </Text>
+      <InputSection />
+      <IngredientListSection />
+      <SearchButton />
     </View>
   )
 }
@@ -128,18 +148,14 @@ const styles = StyleSheet.create({
   sectionContainer: {
     padding: 10,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFF3E6',
+    backgroundColor: '#ffffff',//'#FFF3E6',
   },
   input: {
     width: 300,
     height: 50,
-    // borderWidth: 1,
-    // borderColor: '#555',
     borderTopLeftRadius: 30,
     borderBottomLeftRadius: 30,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f2f2f2',
     textAlign: 'center',
     fontSize: 20,
     marginTop: 10,
@@ -148,10 +164,15 @@ const styles = StyleSheet.create({
   },
   ingredientList: {
     margin: 10,
-    // padding: 10,
-    // backgroundColor: '#FF8C10',
-    justifyContent: 'center',
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#8E908F',
+  },
+  ingredientListLeftSide: {
+    flexDirection: 'row',
   },
   ingredientListText: {
     fontSize: 30,
@@ -186,7 +207,23 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: 10,
     elevation: 5,
-},
+  },
+  textHeader: {
+    fontSize: 30,
+    textAlign: 'left',
+  },
+  icon: {
+    marginRight: 10,
+  },
+  deleteButton: {
+    width: 20,
+    height: 20,
+    borderRadius: 30,
+    backgroundColor: '#FF8C10',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // elevation: 5,
+  },
 });
 
 export default PutIngredient;
