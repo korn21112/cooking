@@ -52,6 +52,9 @@ function App(){
         <Stack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="PutIngredient"
@@ -64,6 +67,9 @@ function App(){
         <Stack.Screen
           name="Detail"
           component={Detail}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="UpdateDetail"
