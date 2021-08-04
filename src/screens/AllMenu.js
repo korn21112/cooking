@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderTopLeftRadius: 30,
     overflow: "hidden",
+    elevation: 5,
   },
   rating: {
     width: 55,
