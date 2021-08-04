@@ -1,4 +1,4 @@
-import React , {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert,
   Pressable,
@@ -12,96 +12,211 @@ import {
   TextInput,
   Button,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import { NavigationContainer, useNavigation, useRoute } from '@react-navigation/native';
-import { createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import firestore from '@react-native-firebase/firestore';
 
 const Stack = createStackNavigator();
 
-function AllMenu(){
+function AllMenu() {
 
   const navigation = useNavigation();
+  const inputRef = useRef(null);
   const [choices, setChoices] = useState([]);
+  const [input, setInput] = useState('')
 
-    const findMenu = () => {
-      const subscriber = 
+  const findMenu = () => {
+    const subscriber =
       firestore()
-      .collection("foods")
-    //   .where('ingredients', 'array-contains-any', temp)//.where('ingredients', '==', ['rice','egg','pork'])
-      .onSnapshot(doc =>{
-        let food = []
-        doc.forEach(doc => {
-          food.push(doc.data())
+        .collection("foods")
+        .onSnapshot(doc => {
+          let food = []
+          doc.forEach(doc => {
+            food.push(doc.data())
+          })
+          setChoices(food)
         })
-        setChoices(food)
-      })
-    }
+  }
 
   useEffect(() => {
     findMenu()
-  },[]);
+  }, []);
 
-  return(
-    <View style={styles.sectionContainer}>
-      <FlatList
-        data={choices}
-        renderItem={({item, index})=>(
-            <View 
-              style={styles.foodlist}
+  const MenuList = () => {
+    return (
+      <View style={styles.menuListSection}>
+        <FlatList
+          data={choices}
+          numColumns={2}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              style={{ flex: 1 }}
+              onPress={() => { navigation.navigate('Detail', { item }) }}
             >
-                <TouchableOpacity
-                    onPress={()=>{navigation.navigate('Detail',{item})}}
+              <View
+                style={styles.foodlist}
+              >
+                <ImageBackground
+                  source={{
+                    uri: item?.pictureURL
+                  }}
+                  style={styles.pictureSection}
+                  resizeMode="cover"
                 >
-                    <Text style={styles.foodlistText}>
-                        {item.name}
+                  <View
+                    style={styles.rating}
+                  >
+                    <Text style={styles.ratingText}>
+                      S {item.rating.toFixed(1)}
                     </Text>
-                </TouchableOpacity>
-            </View>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
+                  </View>
+                </ImageBackground>
+                <View style={styles.textListSection}>
+                  <Text style={styles.foodlistText}>
+                    {item.name}
+                  </Text>
+                  {/* <Text style={styles.foodlistText}>
+                    rating: {item.rating.toFixed(2)}
+                  </Text> */}
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    )
+  }
+
+  const SearchButton = () => {
+    return (
+      <TouchableOpacity
+        onPress={() => onPressHandle(input)}
+      >
+        <View style={styles.searchButton}>
+          <Text style={styles.textSearchButton}>
+            Search
+        </Text>
+        </View>
+      </TouchableOpacity>
+
+    )
+  }
+
+  const InputSection = () => {
+    return (
+      <View style={styles.inputSection}>
+        <TextInput
+          style={styles.input}
+          placeholder='Search any recipe'
+          // value={name}
+          textAlign='left'
+          onChangeText={(value) => setInput(value)}
+          ref={inputRef}
+        />
+        <SearchButton />
+      </View>
+    )
+  }
+
+  return (
+    <View style={styles.sectionContainer}>
+      <Text style={styles.textHeader}>
+        Make your own food,stay at home
+      </Text>
+      <InputSection />
+      <MenuList />
 
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-    sectionContainer: {
-      flex: 1,
-      flexDirection: 'column',
-      backgroundColor: '#FFF3E6'
-      // justifyContent: 'center',
-      // alignItems: 'center',
-    },
-    text: {
-        // fontSize:40,
-        // fontFamily:'DancingScript-Regular'
-    },
-    input: {
-      width: 300,
-      borderWidth: 1,
-      borderColor: '#555',
-      borderRadius: 10,
-      backgroundColor: '#ffffff',
-      textAlign: 'center',
-      fontSize: 20,
-      marginTop: 130,
-      marginBottom: 10,
-  },
-  foodlist: {
-    margin: 10,
+  sectionContainer: {
+    width: '100%',
     padding: 10,
-    backgroundColor: '#FF8C10',
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  textHeader: {
+    fontSize: 30,
+    textAlign: 'left',
+  },
+  input: {
+    width: 300,
+    height: 50,
+    borderTopLeftRadius: 30,
+    borderBottomLeftRadius: 30,
+    backgroundColor: '#f2f2f2',
+    textAlign: 'center',
+    fontSize: 20,
+    marginTop: 10,
+    paddingLeft: 20,
+    marginBottom: 10,
+  },
+  inputSection: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  foodlist: {
+    margin: 5,
+    padding: 5,
+    justifyContent: 'center',
+    flex: 1,
+  },
   foodlistText: {
-    fontSize: 30,
+    fontSize: 20,
+    color: '#4C4A48',
+    // fontFamily: 'Yomogi-Regular',
+    flex: 1,
+    fontWeight: 'bold',
+  },
+  searchButton: {
+    backgroundColor: '#FF8C10',
+    height: 50,
+    width: 70,
+    borderTopRightRadius: 30,
+    borderBottomRightRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textSearchButton: {
+    color: '#ffffff'
+  },
+  menuListSection: {
+    flex: 1,
+  },
+  textListSection: {
+    // flex:1,
+  },
+  pictureSection: {
+    flex: 1,
+    width: '100%',
+    height: 150,
+    backgroundColor: 'white',
+    borderRadius: 30,
+    borderTopLeftRadius: 30,
+    overflow: "hidden",
+  },
+  rating: {
+    width: 55,
+    height: 25,
+    borderRadius: 30,
+    backgroundColor: '#FF8C10',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+  },
+  ratingText: {
+    fontWeight: 'bold',
     color: 'white',
-    fontFamily: 'Yomogi-Regular',
   }
-  });
-  
-  export default AllMenu;
+});
+
+export default AllMenu;
