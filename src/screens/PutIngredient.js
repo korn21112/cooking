@@ -16,16 +16,10 @@ import {
 } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import auth from '@react-native-firebase/auth';
-
-const Stack = createStackNavigator();
 
 function PutIngredient() {
-
   const navigation = useNavigation();
   const inputRef = useRef(null);
-  // const [name, setName] = useState('');
-  // const [age, setAge] = useState('')
   const [input, setInput] = useState('')
   const [ingredients, setIngredients] = useState([
     { name: "egg" },
@@ -68,7 +62,7 @@ function PutIngredient() {
   const SearchButton = () => {
     return (
       <TouchableOpacity
-        style={styles.button}
+        style={styles.searchButton}
         onPress={() => {
           searchHandle()
         }}
@@ -196,7 +190,7 @@ const styles = StyleSheet.create({
   textAddButton: {
     color: '#ffffff'
   },
-  button: {
+  searchButton: {
     width: 60,
     height: 60,
     borderRadius: 30,
