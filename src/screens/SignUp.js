@@ -68,6 +68,7 @@ function SignUp() {
             .createUserWithEmailAndPassword(email, password)
             .then(() => {
                 console.log('User account created & signed in!');
+                navigation.replace('Home');
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
@@ -119,7 +120,7 @@ function SignUp() {
                 <Button
                 title='sign up'
                 color="#FF8C10"
-                onPress={() => { signInByEmail() }}
+                onPress={() => { createUser() }}
             />
             </View>
         );
