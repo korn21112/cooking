@@ -33,11 +33,14 @@ function AllMenu() {
       firestore()
         .collection("foods")
         .onSnapshot(doc => {
-          let food = []
-          doc.forEach(doc => {
-            food.push(doc.data())
-          })
-          setChoices(food)
+          if (doc) {
+            let food = []
+            doc.forEach(doc => {
+              food.push(doc.data())
+            })
+            setChoices(food)
+          }
+
         })
   }
 

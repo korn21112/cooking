@@ -1,4 +1,4 @@
-import React , {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert,
   Pressable,
@@ -16,44 +16,45 @@ import {
   ImageBackground,
 } from 'react-native';
 import { NavigationContainer, useNavigation, useRoute } from '@react-navigation/native';
-import { createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import firestore from '@react-native-firebase/firestore';
 
 const Stack = createStackNavigator();
 
-function Menu(){
+function Menu() {
 
   const navigation = useNavigation();
   const route = useRoute();
-  const {ingredients} = route.params;
+  const { ingredients } = route.params;
   const [choices, setChoices] = useState([]);
 
-    const findMenu = () => {
-      let temp = []
-      ingredients.forEach(item => {
-        temp.push(item.name)
-      })
-      const subscriber = 
+  const findMenu = () => {
+    let temp = []
+    ingredients.forEach(item => {
+      temp.push(item.name)
+    })
+    const subscriber =
       firestore()
-      .collection("foods")
-      .where('ingredients', 'array-contains-any', temp)//.where('ingredients', '==', ['rice','egg','pork'])
-      .onSnapshot(doc =>{
-        if(doc.empty){
-          console.log('doc empty');
-        } else {
-          console.log('doc not empty');
-        }
-        let food = []
-        doc.forEach(doc => {
-          food.push(doc.data())
+        .collection("foods")
+        .where('ingredients', 'array-contains-any', temp)//.where('ingredients', '==', ['rice','egg','pork'])
+        .onSnapshot(doc => {
+          if (doc) {
+            console.log('doc not null');
+            let food = []
+            doc.forEach(doc => {
+              food.push(doc.data())
+            })
+            setChoices(food)
+
+          } else {
+            console.log('doc is null');
+          }
         })
-        setChoices(food)
-      })
-    }
+  }
 
   useEffect(() => {
     findMenu()
-  },[]);
+  }, []);
 
   const MenuList = () => {
     return (
@@ -101,7 +102,7 @@ function Menu(){
     )
   }
 
-  return(
+  return (
     <View style={styles.sectionContainer}>
       <Text style={styles.textHeader}>
         choose recipe that you interest
@@ -197,6 +198,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   }
-  });
-  
-  export default Menu;
+});
+
+export default Menu;

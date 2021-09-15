@@ -44,20 +44,19 @@ function Detail() {
                 .collection("foods")
                 .where('name', '==', item.name)//.where('ingredients', '==', ['rice','egg','pork'])
                 .onSnapshot(doc => {
-                    if (!doc.empty) {
-                        console.log('this doc is not empty')
+                    if (doc) {
+                        console.log('doc not null')
+                        let food = []
+                        doc.forEach(doc => {
+                            if (doc.exists) {
+                                console.log('this doc exists')
+                            }
+                            food.push(doc.data())
+                            setDocNum(doc.ref._documentPath._parts[1])
+                            console.log(doc.ref._documentPath._parts[1])
+                        })
+                        setFoods(food)
                     }
-                    let food = []
-                    doc.forEach(doc => {
-                        if (doc.exists) {
-                            console.log('this doc exists')
-                        }
-                        food.push(doc.data())
-                        setDocNum(doc.ref._documentPath._parts[1])
-                        console.log(doc.ref._documentPath._parts[1])
-                    })
-
-                    setFoods(food)
                 })
     }
 
